@@ -1,0 +1,42 @@
+--- PythonMagick-0.8/configure.ac.old	2009-01-07 10:50:52.000000000 +0100
++++ PythonMagick-0.8/configure.ac	2009-01-07 10:51:24.000000000 +0100
+@@ -17,7 +17,7 @@ AC_PROG_INSTALL
+ AC_PROG_LN_S
+ AC_PROG_MAKE_SET
+ AC_PROG_LIBTOOL
+-AM_PATH_PYTHON(2.5)
++AM_PATH_PYTHON(2.6)
+ PKG_PROG_PKG_CONFIG
+ 
+ # Checks for libraries.
+@@ -37,7 +37,7 @@ AC_HEADER_STDBOOL
+ AC_C_CONST
+ AC_TYPE_SIZE_T
+ 
+-CXXFLAGS+=" -DBOOST_PYTHON_DYNAMIC_LIB"
++CXXFLAGS="$CXXFLAGS -DBOOST_PYTHON_DYNAMIC_LIB"
+ 
+ # Checks for library functions.
+ 
+--- PythonMagick-0.8/m4/ax_python.m4.old	2009-01-07 11:02:35.000000000 +0100
++++ PythonMagick-0.8/m4/ax_python.m4	2009-01-07 11:03:06.000000000 +0100
+@@ -58,7 +58,7 @@
+ AC_DEFUN([AX_PYTHON],
+ [AC_MSG_CHECKING(for python build information)
+ AC_MSG_RESULT([])
+-for python in python2.5 python2.4 python2.3 python2.2 python2.1 python; do
++for python in python2.6 python2.5 python2.4 python2.3 python2.2 python2.1 python; do
+ AC_CHECK_PROGS(PYTHON_BIN, [$python])
+ ax_python_bin=$PYTHON_BIN
+ if test x$ax_python_bin != x; then
+--- PythonMagick-0.8/Makefile.am.old	2009-01-07 14:13:47.000000000 +0100
++++ PythonMagick-0.8/Makefile.am	2009-01-07 14:14:13.000000000 +0100
+@@ -17,7 +17,7 @@ _PythonMagick_la_SOURCES =
+ nodist_EXTRA__PythonMagick_la_SOURCES = dummy.cpp
+ 
+ # Flags are always good to have
+-_PythonMagick_la_LDFLAGS = -avoid-version -module $(BOOST_LDFLAGS) $(BOOST_PYTHON_LIBS) $(MAGICKPP_LIBS) $(MAGICK_LIBS) -l$(PYTHON_LIB)
++_PythonMagick_la_LDFLAGS = -avoid-version -module $(BOOST_LDFLAGS) -l$(BOOST_PYTHON_LIB) $(MAGICKPP_LIBS) $(MAGICK_LIBS) -l$(PYTHON_LIB)
+ 
+ # And the libraries to include
+ _PythonMagick_la_LIBADD = pythonmagick_src/libpymagick.la \

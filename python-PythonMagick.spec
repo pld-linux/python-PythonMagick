@@ -2,13 +2,12 @@
 Summary:	PythonMagick
 Summary(pl.UTF-8):	Interfejs Pythona do ImageMagicka
 Name:		python-%{module}
-Version:	0.8
+Version:	0.9.1
 Release:	1
 License:	GPL v3
 Group:		Development/Languages/Python
 Source0:	http://www.imagemagick.org/download/python/%{module}-%{version}.tar.lzma
-# Source0-md5:	9b462dcc26a64e4fb02004996c72da8b
-Patch0:		%{name}-ac.patch
+# Source0-md5:	fb6227e86628aa2f6eea04dcacfe013b
 BuildRequires:	ImageMagick-c++-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -34,7 +33,6 @@ PythonMagick to moduł Pythona do ImageMagicka.
 %prep
 %setup -q -c -T -n %{module}-%{version}
 lzma -dc %{SOURCE0} | tar xf - -C ..
-%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -61,5 +59,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README
+%dir %{py_sitedir}/PythonMagick
 %{py_sitedir}/PythonMagick/*.py[co]
 %attr(755,root,root) %{py_sitedir}/PythonMagick/*.so

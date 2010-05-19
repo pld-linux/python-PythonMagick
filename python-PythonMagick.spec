@@ -8,23 +8,24 @@ License:	GPL v3
 Group:		Development/Languages/Python
 Source0:	http://www.imagemagick.org/download/python/%{module}-%{version}.tar.lzma
 # Source0-md5:	fb6227e86628aa2f6eea04dcacfe013b
-Patch0:     %{name}-ac_python_fix.patch
+Patch0:		%{name}-ac_python_fix.patch
 BuildRequires:	ImageMagick-c++-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	boost-python-devel
 BuildRequires:	libtool
 BuildRequires:	lzma >= 1:4.42
+BuildRequires:	pkgconfig
 BuildRequires:	python-devel
 BuildRequires:	rpm-pythonprov
 # if py_postclean is used
 BuildRequires:	rpmbuild(macros) >= 1.219
 #%pyrequires_eq	python-libs
 %pyrequires_eq	python-modules
-# Build fails D_FORTIFY_SOURCE
-%define		filterout_cpp		-D_FORTIFY_SOURCE=[0-9]+
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+# Build fails D_FORTIFY_SOURCE
+%define		filterout_cpp		-D_FORTIFY_SOURCE=[0-9]+
 
 %description
 PythonMagick is the Python API for the ImageMagick.

@@ -46,7 +46,8 @@ lzma -dc %{SOURCE0} | tar xf - -C ..
 %configure \
 	--enable-static=no \
 
-%{__make}
+%{__make} \
+	BOOST_LDFLAGS="-L%{_libdir}"
 
 %install
 rm -rf $RPM_BUILD_ROOT

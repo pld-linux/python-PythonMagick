@@ -1,0 +1,14 @@
+--- ./m4/ax_python.m4.ac_python_fix	2009-02-18 02:52:06.000000000 +0100
++++ ./m4/ax_python.m4	2010-05-19 14:56:12.000000000 +0200
+@@ -64,7 +64,10 @@ ax_python_bin=$PYTHON_BIN
+ if test x$ax_python_bin != x; then
+    AC_CHECK_LIB($ax_python_bin, main, ax_python_lib=$ax_python_bin, ax_python_lib=no)
+    AC_CHECK_HEADER([$ax_python_bin/Python.h],
+-   [[ax_python_header=`locate $ax_python_bin/Python.h | sed -e s,/Python.h,,`]],
++   # [[ax_python_header=`locate $ax_python_bin/Python.h | sed -e s,/Python.h,,`]],
++   # Above version fails as we may not have locate on builders
++   [[ax_python_header=`ls /usr/include/$ax_python_bin/Python.h | sed -e s,/Python.h,,`]],
++   # Consider using python-config --includes |awk '{sub("-I",""); print $1}' (bs@irc suggestion)
+    ax_python_header=no)
+    if test $ax_python_lib != no; then
+      if test $ax_python_header != no; then

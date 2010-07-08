@@ -3,7 +3,7 @@ Summary:	PythonMagick
 Summary(pl.UTF-8):	Interfejs Pythona do ImageMagicka
 Name:		python-%{module}
 Version:	0.9.1
-Release:	3
+Release:	4
 License:	GPL v3
 Group:		Development/Languages/Python
 Source0:	http://www.imagemagick.org/download/python/%{module}-%{version}.tar.lzma
